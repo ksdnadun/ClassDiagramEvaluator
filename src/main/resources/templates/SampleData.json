@@ -1,0 +1,56 @@
+{
+	"ModelType":"ClassDiagram",
+	"ModelElements":[
+		{
+			"id":1,
+			"type":"class",
+			"parentElements":null,
+			"isAbstractClass":"false",
+			"childElements":[
+								{"childId":2, "relationType":"Inheritance"},
+								{"childId":3, "relationType":"Inheritance"},
+								{"childId":4, "relationType":"Inheritance"}
+							],
+			"attributes":null,
+			"behaviors":[
+							{"name":"quack", "returnType":"void", "parametersInOrder":null, "isOverriden":false, "isAbstract": false},
+							{"name":"swim", "returnType":"void", "parametersInOrder":null, "isOverriden":false, "isAbstract": false},
+							{"name":"display", "returnType":"void", "parametersInOrder":null, "isOverriden":false, "isAbstract": false},
+							{"name":"fly", "returnType":"void", "parametersInOrder":null, "isOverriden":false, "isAbstract": false}
+						]
+		},
+		{
+			"id":2,
+			"type":"class",
+			"parentElements":[{"parentId":1, "relationType":"Inheritance"}],
+			"childElements":null,
+			"attributes":null,
+			"behaviors":[
+							{"name":"quack", "returnType":"", "parametersInOrder":null, "isOverriden":true},
+							{"name":"fly", "returnType":"", "parametersInOrder":null, "isOverriden":true}
+						]
+		},
+		{
+			"id":3,
+			"type":"class",
+			"parentElements":[{"parentId":2, "relationType":"Ihnheritance"}],
+			"childElements":null,
+			"attributes":null,
+			"behaviors":[
+							{"name":"quack", "returnType":"", "parametersInOrder":null, "isOverriden":true},
+							{"name":"fly", "returnType":"", "parametersInOrder":null, "isOverriden":true}
+						]
+		},
+		{
+			"id":4,
+			"type":"class",
+			"parentElements":[{"parentId":2, "relationType":"Inheritance"}],
+			"childElements":null,
+			"attributes":null,
+			"behaviors":[
+							{"name":"quack", "returnType":"", "parametersInOrder":null, "isOverriden":true},
+							{"name":"fly", "returnType":"", "parametersInOrder":null, "isOverriden":true}
+						]
+		}
+	]	
+}

@@ -14,7 +14,7 @@ import com.research.classdiagramevaluator.dto.ClassModelDTO;
 public class ClassDiagramModelResource {
 	
 	@ResponseStatus(code = HttpStatus.ACCEPTED)
-	@PostMapping("/classmodel")	
+	@PostMapping("/classmodel")
 	public void createClassModel(@RequestBody ClassModelDTO classModelDTO){
 		
 	}
