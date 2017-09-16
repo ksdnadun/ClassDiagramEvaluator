@@ -2,11 +2,7 @@
 package com.research.classdiagramevaluator.dto;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
-import org.springframework.stereotype.Component;
-
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -14,39 +10,38 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-@Component
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "ModelType",
-    "ModelElements"
+    "parentId",
+    "relationType"
 })
-public class ClassModelDTO {
+public class ParentElement {
 
-    @JsonProperty("ModelType")
-    private String modelType;
-    @JsonProperty("ModelElements")
-    private List<ModelElement> modelElements = null;
+    @JsonProperty("parentId")
+    private Integer parentId;
+    @JsonProperty("relationType")
+    private String relationType;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("ModelType")
-    public String getModelType() {
-        return modelType;
+    @JsonProperty("parentId")
+    public Integer getParentId() {
+        return parentId;
     }
 
-    @JsonProperty("ModelType")
-    public void setModelType(String modelType) {
-        this.modelType = modelType;
+    @JsonProperty("parentId")
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
     }
 
-    @JsonProperty("ModelElements")
-    public List<ModelElement> getModelElements() {
-        return modelElements;
+    @JsonProperty("relationType")
+    public String getRelationType() {
+        return relationType;
     }
 
-    @JsonProperty("ModelElements")
-    public void setModelElements(List<ModelElement> modelElements) {
-        this.modelElements = modelElements;
+    @JsonProperty("relationType")
+    public void setRelationType(String relationType) {
+        this.relationType = relationType;
     }
 
     @JsonAnyGetter
