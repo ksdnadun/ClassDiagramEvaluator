@@ -1,5 +1,7 @@
 package com.research.classdiagramevaluator.service.impl;
 
+import static org.mockito.Matchers.intThat;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -46,19 +48,45 @@ public class ModelEvaluatorServiceImpl implements ModelEvaluateService {
 			String couplingRuleText = "Following classes do not associated with abstract layers. ";
 			StringBuilder sb = new StringBuilder(couplingRuleText);
 			
-			classesDoNotRelateWithAbstractLayer.forEach(elem -> {
-				 sb.append(elem.getElementName());
-			});
+			String returnText = null;
 			
-			couplingRule.set_message(sb.toString());
+			if(classesDoNotRelateWithAbstractLayer.isEmpty()) {
+				returnText = "All classes are properly associated with Abstract layers";
+			}else {
+				classesDoNotRelateWithAbstractLayer.forEach(elem -> {
+					 sb.append(elem.getElementName());
+				});
+				
+				couplingRule.set_message(sb.toString());
+			}
+			
+			couplingRule.set_message(returnText);
+			
 			return couplingRule;		
 		}
 		
-		private List<ModelElement> getclassesDoNotRelateWithAbstractLayer(List<ModelElement> classesSet) {
-			return classesSet.stream().filter(element -> 
-			(element.getParentElements() != null && (!element.getParentElements().isEmpty() || !element.getParentElements().isEmpty())) &&
-			(element.getParentElements().isEmpty() && isAssociatedWithAbstractLayer(element, classesSet)))
-					.collect(Collectors.toList());			
+		private List<ModelElement> getclassesDoNotRelateWithAbstractLayer(List<ModelElement> classesSet) {			
+			
+			List<ModelElement> outputList = new ArrayList<ModelElement>();
+			classesSet.forEach(item -> {
+				if(item.getParentElements() != null) { //&& (!item.getParentElements().isEmpty() || !item.getParentElements().isEmpty())
+					List<ParentElement> parentsList =  item.getParentElements();
+					parentsList.forEach(parent -> {
+						int parentId = parent.getParentId();
+						ModelElement selectedModel = classesSet.stream().filter(itemFromEntireList -> parentId == itemFromEntireList.getId()).findFirst().get();
+						if(selectedModel.getType().equals("class")) {
+							outputList.add(selectedModel);
+						}						
+					});
+				}
+			});
+			
+			return outputList;
+			
+//			return classesSet.stream().filter(element -> 
+//			(element.getParentElements() != null && (!element.getParentElements().isEmpty() || !element.getParentElements().isEmpty())) &&
+//			(element.getParentElements().isEmpty() && isAssociatedWithAbstractLayer(element, classesSet)))
+//					.collect(Collectors.toList());			
 		}
 		
 		private boolean isAssociatedWithAbstractLayer(ModelElement specificElement, List<ModelElement> entireElementList) {
