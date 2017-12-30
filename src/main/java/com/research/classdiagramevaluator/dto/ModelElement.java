@@ -15,6 +15,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({
     "id",
     "type",
+    "elementName",
     "parentElements",
     "isAbstractClass",
     "childElements",
@@ -27,6 +28,8 @@ public class ModelElement {
     private Integer id;
     @JsonProperty("type")
     private String type;
+    @JsonProperty("elementName")
+    private String elementName;    
     @JsonProperty("parentElements")
     private List<ParentElement> parentElements = null;
     @JsonProperty("isAbstractClass")
@@ -58,6 +61,16 @@ public class ModelElement {
     @JsonProperty("type")
     public void setType(String type) {
         this.type = type;
+    }
+    
+    @JsonProperty("elementName")
+    public void setElementName(String elementName) {
+    	this.elementName = elementName;
+    }
+    
+    @JsonProperty("elementName")
+    public String getElementName() {
+    	return elementName;
     }
 
     @JsonProperty("parentElements")

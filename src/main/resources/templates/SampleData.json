@@ -4,6 +4,7 @@
 		{
 			"id":1,
 			"type":"class",
+			"elementName": "Duck",
 			"parentElements":null,
 			"isAbstractClass":"false",
 			"childElements":[
@@ -22,6 +23,7 @@
 		{
 			"id":2,
 			"type":"class",
+			"elementName": "MallardDuck",
 			"parentElements":[{"parentId":1, "relationType":"Inheritance"}],
 			"childElements":null,
 			"attributes":null,
@@ -33,6 +35,7 @@
 		{
 			"id":3,
 			"type":"class",
+			"elementName": "RedHeadDuck",
 			"parentElements":[{"parentId":2, "relationType":"Ihnheritance"}],
 			"childElements":null,
 			"attributes":null,
@@ -44,6 +47,7 @@
 		{
 			"id":4,
 			"type":"class",
+			"elementName": "RubberDuck",
 			"parentElements":[{"parentId":2, "relationType":"Inheritance"}],
 			"childElements":null,
 			"attributes":null,
