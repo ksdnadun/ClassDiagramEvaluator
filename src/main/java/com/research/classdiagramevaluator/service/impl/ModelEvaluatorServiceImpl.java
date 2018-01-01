@@ -1,15 +1,14 @@
 package com.research.classdiagramevaluator.service.impl;
 
-import static org.mockito.Matchers.intThat;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.springframework.http.ResponseEntity;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import com.research.classdiagramevaluator.dto.ChildElement;
 import com.research.classdiagramevaluator.dto.ClassModelDTO;
 import com.research.classdiagramevaluator.dto.ModelElement;
 import com.research.classdiagramevaluator.dto.ParentElement;
@@ -18,9 +17,12 @@ import com.research.classdiagramevaluator.services.ModelEvaluateService;
 
 @Component
 public class ModelEvaluatorServiceImpl implements ModelEvaluateService {
+	
+	private final Logger log = LoggerFactory.getLogger(ModelEvaluatorServiceImpl.class);
 
 	@Override
 	public List<ResultRule> evaluateModel(ClassModelDTO classModelDTO) {
+		log.debug("first log");
 		List<ResultRule> ruleList = processModelsData(classModelDTO);
 		return ruleList;
 		//return null;
@@ -32,6 +34,7 @@ public class ModelEvaluatorServiceImpl implements ModelEvaluateService {
 		ResultRule rule1 = new ResultRule();
 		rule1.set_message("This is the first Rule");
 		
+		System.out.println("Model Element Count = "+ classModelDTO.getModelElements().size());
 		ResultRule couplingRule = identifyCouplingOfClasses(classModelDTO.getModelElements());
 		//resultRuleList.add(rule1);//rule1
 		resultRuleList.add(couplingRule);//rule1
@@ -52,32 +55,42 @@ public class ModelEvaluatorServiceImpl implements ModelEvaluateService {
 			
 			if(classesDoNotRelateWithAbstractLayer.isEmpty()) {
 				returnText = "All classes are properly associated with Abstract layers";
+				couplingRule.set_message(returnText);
 			}else {
 				classesDoNotRelateWithAbstractLayer.forEach(elem -> {
-					 sb.append(elem.getElementName());
-				});
+					 sb.append(elem.getElementName()).append("  ");
+				});				
+				
 				
 				couplingRule.set_message(sb.toString());
-			}
+				
+			}				
 			
-			couplingRule.set_message(returnText);
+			System.out.println(" Result Rule is = "+ couplingRule.get_message());
 			
-			return couplingRule;		
+			return couplingRule;
 		}
 		
 		private List<ModelElement> getclassesDoNotRelateWithAbstractLayer(List<ModelElement> classesSet) {			
 			
-			List<ModelElement> outputList = new ArrayList<ModelElement>();
+			ArrayList<ModelElement> outputList = new ArrayList<ModelElement>();
+			
 			classesSet.forEach(item -> {
 				if(item.getParentElements() != null) { //&& (!item.getParentElements().isEmpty() || !item.getParentElements().isEmpty())
 					List<ParentElement> parentsList =  item.getParentElements();
+					System.out.println("Parent List Count of Class "+item.getElementName() + " is =" +item.getParentElements().size());
 					parentsList.forEach(parent -> {
 						int parentId = parent.getParentId();
+						System.out.println("parentId ="+parentId);
 						ModelElement selectedModel = classesSet.stream().filter(itemFromEntireList -> parentId == itemFromEntireList.getId()).findFirst().get();
 						if(selectedModel.getType().equals("class")) {
-							outputList.add(selectedModel);
-						}						
+							System.out.println("id ="+selectedModel.getId());
+							System.out.println("classname ="+selectedModel.getElementName());
+							outputList.add(item);
+						}
 					});
+					
+					List<ChildElement> childElementsList = item.getChildElements();
 				}
 			});
 			

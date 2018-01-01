@@ -36,7 +36,7 @@
 			"id":3,
 			"type":"class",
 			"elementName": "RedHeadDuck",
-			"parentElements":[{"parentId":2, "relationType":"Ihnheritance"}],
+			"parentElements":[{"parentId":1, "relationType":"Ihnheritance"}],
 			"childElements":null,
 			"attributes":null,
 			"behaviors":[
@@ -48,7 +48,7 @@
 			"id":4,
 			"type":"class",
 			"elementName": "RubberDuck",
-			"parentElements":[{"parentId":2, "relationType":"Inheritance"}],
+			"parentElements":[{"parentId":1, "relationType":"Inheritance"}],
 			"childElements":null,
 			"attributes":null,
 			"behaviors":[

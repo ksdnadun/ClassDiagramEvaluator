@@ -35,7 +35,7 @@ public class ModelElement {
     @JsonProperty("isAbstractClass")
     private String isAbstractClass;
     @JsonProperty("childElements")
-    private Object childElements;
+    private List<ChildElement> childElements;
     @JsonProperty("attributes")
     private Object attributes;
     @JsonProperty("behaviors")
@@ -94,12 +94,12 @@ public class ModelElement {
     }
 
     @JsonProperty("childElements")
-    public Object getChildElements() {
+    public List<ChildElement> getChildElements() {
         return childElements;
     }
 
     @JsonProperty("childElements")
-    public void setChildElements(Object childElements) {
+    public void setChildElements(List<ChildElement> childElements) {
         this.childElements = childElements;
     }
 
