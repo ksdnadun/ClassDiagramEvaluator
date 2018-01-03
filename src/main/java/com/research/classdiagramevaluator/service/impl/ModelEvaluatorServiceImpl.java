@@ -90,7 +90,13 @@ public class ModelEvaluatorServiceImpl implements ModelEvaluateService {
 						}
 					});
 					
-					List<ChildElement> childElementsList = item.getChildElements();
+					/*List<ChildElement> childElementsList = item.getChildElements();
+					childElementsList.forEach(child -> {
+						ModelElement childElementModel = classesSet.stream().filter(itemFromEntireList -> child.getChildId().value() == itemFromEntireList.getId()).findFirst().get();
+						if(childElementModel.getType().equals("class")) {
+							outputList.add(childElementModel);
+						}
+					});*/
 				}
 			});
 			
