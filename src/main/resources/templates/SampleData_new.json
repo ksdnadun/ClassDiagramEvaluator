@@ -1,0 +1,58 @@
+{
+	"ModelType":"ClassDiagram",
+	"ModelElements":[
+		{
+			"id":1,
+			"type":"class",
+			"elementName": "Exporter",
+			"parentElements":null,
+			"isAbstractClass":"false",
+			"childElements":[
+								{"childId":2, "relationType":"Inheritance"},
+								{"childId":3, "relationType":"Inheritance"},
+								{"childId":4, "relationType":"Inheritance"}
+							],
+			"attributes":null,
+			"behaviors":[
+							{"name":"generateContent", "returnType":"ExportEssentials", "parametersInOrder":null, "isOverriden":false, "isAbstract": false},
+							{"name":"export", "returnType":"void", "parametersInOrder":"exportEssentials", "isOverriden":false, "isAbstract": false}							
+						]
+		},
+		{
+			"id":2,
+			"type":"class",
+			"elementName": "WordExporter",
+			"parentElements":[{"parentId":1, "relationType":"Inheritance"}],
+			"childElements":null,
+			"attributes":null,
+			"behaviors":[
+							{"name":"generateContent", "returnType":"ExportEssentials", "parametersInOrder":null, "isOverriden":true},
+							{"name":"export", "returnType":"void", "parametersInOrder":null, "isOverriden":true}
+						]
+		},
+		{
+			"id":3,
+			"type":"class",
+			"elementName": "PDFExporter",
+			"parentElements":[{"parentId":1, "relationType":"Ihnheritance"}],
+			"childElements":null,
+			"attributes":null,
+			"behaviors":[
+							{"name":"generateContent", "returnType":"ExportEssentials", "parametersInOrder":null, "isOverriden":true},
+							{"name":"export", "returnType":"void", "parametersInOrder":null, "isOverriden":true}
+						]
+		},
+		{
+			"id":4,
+			"type":"class",
+			"elementName": "HtmlExporter",
+			"parentElements":[{"parentId":1, "relationType":"Inheritance"}],
+			"childElements":null,
+			"attributes":null,
+			"behaviors":[
+							{"name":"generateContent", "returnType":"ExportEssentials", "parametersInOrder":null, "isOverriden":true},
+							{"name":"export", "returnType":"void", "parametersInOrder":null, "isOverriden":true}
+						]
+		}
+	]	
+}

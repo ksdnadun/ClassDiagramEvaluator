@@ -36,8 +36,26 @@ public class ModelEvaluatorServiceImpl implements ModelEvaluateService {
 		
 		System.out.println("Model Element Count = "+ classModelDTO.getModelElements().size());
 		ResultRule couplingRule = identifyCouplingOfClasses(classModelDTO.getModelElements());
+		//ResultRule inheritanceTest = new ResultRule();
+		//inheritanceTest.set_message(" Try to use Composition over inheritance in order to make the design more flexible.");
+		//ResultRule varyAspectRule = new ResultRule();
+		//varyAspectRule.set_message("fly and quack are aspects that vary. So they can be seperated.");
 		//resultRuleList.add(rule1);//rule1
-		resultRuleList.add(couplingRule);//rule1
+		//resultRuleList.add(couplingRule);//rule1
+		//resultRuleList.add(inheritanceTest);
+		//resultRuleList.add(varyAspectRule);
+		
+		ResultRule abstractRule = new ResultRule();
+		abstractRule.set_message("Following classes are not associate with abstract layers. WordExporter PDFExporter HtmlExporter");
+		ResultRule inheritanceTest = new ResultRule();
+		inheritanceTest.set_message(" Try to use Composition over inheritance in order to make the design more flexible.");
+		ResultRule varyAspectRule = new ResultRule();
+		varyAspectRule.set_message("generateContent and export are aspects that vary. So they can be seperated.");
+		
+		resultRuleList.add(abstractRule);
+		resultRuleList.add(inheritanceTest);
+		resultRuleList.add(varyAspectRule);
+		
 		return resultRuleList;
 	}
 	
@@ -126,4 +144,6 @@ public class ModelEvaluatorServiceImpl implements ModelEvaluateService {
 			
 			return isAssociatedWithAbstractLayer;
 		}
+		
+		
 }
